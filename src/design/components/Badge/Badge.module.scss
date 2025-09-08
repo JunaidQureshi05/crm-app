@@ -1,0 +1,86 @@
+@import "src/design/base/color.scss";
+.baseButton {
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #2563eb; /* blue */
+  color: white;
+  font-weight: 500;
+  transition: background 0.2s, transform 0.1s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.baseButton:hover {
+  background: #1d4ed8; /* darker blue */
+}
+
+.baseButton:active {
+  transform: scale(0.97);
+}
+
+/* ---- Sizes ---- */
+.buttonSm {
+  padding: 4px 10px;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.buttonMd {
+  padding: 8px 16px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.buttonLg {
+  padding: 12px 20px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.buttonXl {
+  padding: 16px 28px;
+  font-size: 18px;
+
+  line-height: 28px;
+}
+
+/* ---- Utility ---- */
+.fullWidth {
+  width: 100%;
+}
+
+/* Varinats */
+.primary {
+  background: $primary-color;
+  color: white;
+}
+.primary:hover {
+  background: $primary-dark;
+}
+.primary:active {
+  background: $primary-dark; /* even darker blue */
+}
+.secondary {
+  background: $secondary-color; /* light gray */
+  color: #374151; /* dark gray */
+}
+.secondary:hover {
+  background: #d1d5db; /* darker light gray */
+}
+.secondary:active {
+  background: #9ca3af; /* even darker gray */
+}
+.info {
+  background: transparent;
+  color: #2563eb; /* blue */
+  border: 1px solid #2563eb; /* blue */
+}
+.info:hover {
+  background: #eff6ff; /* light blue */
+}
+.info:active {
+  background: #dbeafe; /* darker light blue */
+}
