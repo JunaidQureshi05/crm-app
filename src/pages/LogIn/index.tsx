@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import styles from "./LoginPage.module.css";
+import { useState } from "react";
+import styles from "./LoginPage.module.scss";
+import Button from "../../design/components/Button";
 
 interface LoginPageProps {
   onLogin: (email: string, password: string) => void;
@@ -21,7 +22,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
       <div className={styles.card}>
         <h2 className={styles.title}>Welcome Back</h2>
         <form onSubmit={handleSubmit} className={styles.form}>
-          <label>Email</label>
           <input
             type="email"
             name="email"
@@ -31,7 +31,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             required
           />
 
-          <label>Password</label>
           <input
             type="password"
             name="password"
@@ -41,9 +40,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             required
           />
 
-          <button type="submit" className={styles.button}>
-            Login
-          </button>
+          <Button onClick={() => {}} label={"Sign In"} />
         </form>
         <p className={styles.footer}>
           Don't have an account? <a href="/register">Sign Up</a>

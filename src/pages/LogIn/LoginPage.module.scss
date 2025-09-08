@@ -1,14 +1,14 @@
+@import "src/design/base/color.scss";
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #1e293b;
-  font-family: "Roboto", sans-serif;
+  background: $background-light;
 }
 
 .card {
-  background: #fff;
+  background: $background-light;
   padding: 2.5rem 3rem;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
