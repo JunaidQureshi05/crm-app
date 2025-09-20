@@ -1,4 +1,4 @@
-import { ButtonPropType, ButtonSize, ButtonVariant } from "../../types";
+import { ButtonPropType, ButtonSize, ButtonVariant } from "../../types/";
 import s from "./Button.module.scss";
 
 const Button = ({

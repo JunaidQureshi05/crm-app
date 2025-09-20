@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import Button from "./index";
-import { ButtonSize, ButtonVariant } from "./type";
+import { ButtonSize, ButtonVariant } from "../../types";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button", // sidebar group

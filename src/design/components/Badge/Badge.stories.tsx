@@ -4,7 +4,7 @@ import Button from "./index";
 import { ButtonSize, ButtonVariant } from "./type";
 
 const meta: Meta<typeof Button> = {
-  title: "Components/Button", // sidebar group
+  title: "Components/Badge", // sidebar group
   component: Button,
   argTypes: {
     size: {
