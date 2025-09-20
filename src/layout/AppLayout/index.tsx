@@ -47,10 +47,10 @@ export default function AppLayout() {
     document.body.style.userSelect = "none";
   }
 
-  const { profile, loading } = useProfile();
+  const { profile } = useProfile();
 
   const links = useMemo(() => {
-    console.log(profile);
+    console.log("@@@@@", profile);
     return sideBarLinks.filter((item) =>
       item.roles.some((role) => profile?.roles?.includes(role))
     );

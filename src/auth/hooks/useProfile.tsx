@@ -4,14 +4,22 @@ import { LoggedInUser } from "../../types/global";
 const useProfile = () => {
   const [profile, setProfile] = useState<LoggedInUser | null>(null);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    setLoading(true);
-    let userData = localStorage.getItem("user");
-    if (userData) {
-      let user = JSON.parse(userData);
-      setProfile(user);
+    try {
+      const userData = localStorage.getItem("user");
+
+      console.log(userData);
+      if (userData) {
+        const user: LoggedInUser = JSON.parse(userData);
+        setProfile(user);
+      }
+    } catch (error) {
+      console.error("Failed to parse user data from localStorage:", error);
+      setProfile(null);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
 
   return { profile, loading };

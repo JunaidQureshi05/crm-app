@@ -15,7 +15,7 @@ function withPermission<P extends object>(
     if (!profile) return <LoginPage onLogin={() => {}} />;
 
     const userRoles = profile?.roles ?? [];
-
+    debugger;
     const hasPermission = allowedRoles.some((role) =>
       userRoles?.includes(role)
     );

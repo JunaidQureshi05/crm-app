@@ -3,7 +3,8 @@ import AppLayout from "../layout/AppLayout";
 import EmployeesPage from "../pages/Employees";
 import LoginPage from "../pages/LogIn";
 import Insights from "../pages/Insights";
-const Home = () => <div>Hi there</div>;
+import HomePage from "../../src/pages/Home";
+
 const About = () => <div>About page</div>;
 const NotFound = () => <div>404 - Page not found</div>;
 
@@ -13,17 +14,16 @@ export const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: "/",
-    element: <AppLayout />, // ✅ always show layout
+    path: "/", // ✅ HomePage outside of layout
+    element: <HomePage />,
+  },
+  {
+    path: "/dashboard", // ✅ Layout routes
+    element: <AppLayout />,
     children: [
-      { index: true, element: <Home /> }, // `/`
-      { path: "/insights", element: <Insights /> }, // `/about`
-      {
-        path: "/employees",
-        element: <EmployeesPage />,
-      },
-
-      { path: "*", element: <NotFound /> }, // fallback 404
+      { path: "insights", element: <Insights /> },
+      { path: "employees", element: <EmployeesPage /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);

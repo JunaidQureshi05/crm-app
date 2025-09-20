@@ -2,12 +2,12 @@ import { UserRoles } from "../types/roles";
 
 export const sideBarLinks = [
   {
-    to: "/employees",
+    to: "/dashboard/employees",
     label: "Employees",
     roles: [UserRoles.Admin],
   },
   {
-    to: "/insights",
+    to: "/dashboard/insights",
     label: "Insights",
     roles: [UserRoles.Admin],
   },

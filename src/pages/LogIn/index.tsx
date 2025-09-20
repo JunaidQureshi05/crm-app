@@ -15,6 +15,14 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
     const formData = new FormData(e.currentTarget);
     console.log("Email:", formData.get("email"));
     console.log("Password:", formData.get("password"));
+    sessionStorage.setItem(
+      "user",
+      JSON.stringify({
+        firstName: "Junaid",
+        lastName: "Ahemad",
+        roles: ["admin"],
+      })
+    );
   };
 
   return (
