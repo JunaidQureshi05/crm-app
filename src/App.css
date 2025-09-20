@@ -1,3 +1,10 @@
+:root {
+  --main-color: #2563eb; /* blue-600 as default */
+  --main-color-dark: #1e40af; /* darker for hover/active */
+  --main-color-light: #3b82f6; /* lighter variant */
+  --text-on-main: #ffffff; /* white text on brand */
+}
+
 .App {
   text-align: center;
 }

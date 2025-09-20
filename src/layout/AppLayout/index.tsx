@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import styles from "./AppLayout.module.css";
-import { NavLink, Outlet } from "react-router-dom";
+import styles from "./AppLayout.module.scss";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { Menu, User, X } from "lucide-react";
 import cx from "classnames";
 import useProfile from "../../auth/hooks/useProfile";
@@ -12,11 +12,19 @@ export default function AppLayout() {
   const MIN_WIDTH = 200;
   const MAX_WIDTH = 520;
 
-  const [open, setOpen] = useState(true);
-  const [width, setWidth] = useState(280);
+  // restore preferences
+  const [open, setOpen] = useState(() =>
+    JSON.parse(localStorage.getItem("sidebar-open") || "true")
+  );
+  const [width, setWidth] = useState(
+    () => Number(localStorage.getItem("sidebar-width")) || 280
+  );
+
   const draggingRef = useRef(false);
   const startXRef = useRef(0);
   const startWidthRef = useRef(width);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     function onMove(e: MouseEvent) {
@@ -27,9 +35,11 @@ export default function AppLayout() {
       setWidth(next);
     }
     function onUp() {
+      if (!draggingRef.current) return;
       draggingRef.current = false;
       document.body.style.cursor = "auto";
       document.body.style.userSelect = "auto";
+      localStorage.setItem("sidebar-width", String(width));
     }
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseup", onUp);
@@ -37,7 +47,7 @@ export default function AppLayout() {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseup", onUp);
     };
-  }, []);
+  }, [width]);
 
   function onDragHandleMouseDown(e: React.MouseEvent) {
     draggingRef.current = true;
@@ -47,67 +57,79 @@ export default function AppLayout() {
     document.body.style.userSelect = "none";
   }
 
-  const { profile } = useProfile();
+  const { profile, loading } = useProfile();
 
   const links = useMemo(() => {
-    console.log("@@@@@", profile);
+    if (loading) return [];
     return sideBarLinks.filter((item) =>
       item.roles.some((role) => profile?.roles?.includes(role))
     );
-  }, [profile]);
+  }, [profile, loading]);
+
+  const handleToggle = () => {
+    setOpen((s) => {
+      localStorage.setItem("sidebar-open", String(!s));
+      return !s;
+    });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
 
   return (
     <div className={styles.container}>
+      {/* Header */}
       <header className={styles.header}>
         <div className={styles.headerLeft}>
           <Button
             aria-label="Toggle drawer"
-            variant={ButtonVariant.info}
-            onClick={() => setOpen((s) => !s)}
+            aria-expanded={open}
+            variant={ButtonVariant.primary}
+            onClick={handleToggle}
             label={open ? <X size={18} /> : <Menu size={18} />}
           />
-          <h1 style={{ fontSize: 18, fontWeight: 600 }}>CRM App</h1>
+          <h1 className={styles.appTitle}>⚡ CRM App</h1>
         </div>
-        <div style={{ fontSize: 13, color: "#6b7280" }}>
-          Welcome, {profile?.firstName}
+        <div className={styles.welcome}>
+          Welcome, <span>{profile?.firstName || "Guest"}</span>
         </div>
       </header>
 
+      {/* Main Layout */}
       <div className={styles.main}>
         <aside
           className={cx(styles.drawer, { [styles.drawerCollapsed]: !open })}
-          style={{ width: open ? width : 72 }}
+          style={{
+            width: open ? width : 72,
+            transition: draggingRef.current ? "none" : "width 0.25s ease",
+          }}
         >
+          {/* Navigation */}
           <nav className={styles.nav}>
-            {open && (
-              <ul className={styles.navList}>
-                {links.map((l) => (
-                  <li key={l.to}>
-                    <NavLink
-                      to={l.to}
-                      className={({ isActive }) =>
-                        cx(styles.link, { [styles.linkActive]: isActive })
-                      }
-                    >
-                      <span
-                        style={{ width: 18, textAlign: "center", fontSize: 12 }}
-                      >
-                        •
-                      </span>
-                      <span
-                        style={{ overflow: "hidden", textOverflow: "ellipsis" }}
-                      >
-                        {l.label}
-                      </span>
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            )}
+            <ul className={styles.navList}>
+              {links.map((l) => (
+                <li key={l.to}>
+                  <NavLink
+                    to={l.to}
+                    className={({ isActive }) =>
+                      cx(styles.link, { [styles.linkActive]: isActive })
+                    }
+                    title={!open ? l.label : undefined}
+                  >
+                    {l.icon && <l.icon size={18} />}
+                    {open && (
+                      <span className={styles.linkLabel}>{l.label}</span>
+                    )}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
           </nav>
 
+          {/* Footer with Profile */}
           <div className={styles.drawerFooter}>
-            {/* Profile Section */}
             {open && (
               <div className={styles.profileSection}>
                 <div className={styles.profileInfo}>
@@ -125,18 +147,23 @@ export default function AppLayout() {
                 </div>
                 <Button
                   label="Logout"
-                  onClick={() => console.log("Logout clicked")}
+                  variant={ButtonVariant.primary}
+                  onClick={handleLogout}
                 />
               </div>
             )}
           </div>
 
-          <div
-            className={styles.dragHandle}
-            onMouseDown={onDragHandleMouseDown}
-          />
+          {/* Drag Handle */}
+          {open && (
+            <div
+              className={styles.dragHandle}
+              onMouseDown={onDragHandleMouseDown}
+            />
+          )}
         </aside>
 
+        {/* Main content */}
         <main className={styles.content}>
           <Outlet />
         </main>
