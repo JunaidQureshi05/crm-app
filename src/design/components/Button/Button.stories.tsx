@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import Button from "./index";
-import { ButtonSize, ButtonVariant } from "../../types";
+import { Sizes, ButtonVariant } from "../../types";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button", // sidebar group
@@ -9,7 +9,7 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     size: {
       control: "select",
-      options: [ButtonSize.sm, ButtonSize.md, ButtonSize.lg, ButtonSize.xl],
+      options: [Sizes.sm, Sizes.md, Sizes.lg, Sizes.xl],
     },
     fullWidth: { control: "boolean" },
     onClick: { action: "clicked" },
@@ -37,5 +37,19 @@ export const Info: Story = {
   args: {
     label: "Info Button",
     variant: ButtonVariant.info,
+  },
+};
+
+export const Success: Story = {
+  args: {
+    label: "Success Button",
+    variant: ButtonVariant.success,
+  },
+};
+
+export const Warning: Story = {
+  args: {
+    label: "Warning Button",
+    variant: ButtonVariant.warning,
   },
 };

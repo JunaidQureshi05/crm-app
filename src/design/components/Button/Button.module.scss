@@ -1,49 +1,46 @@
-@import "src/design/base/color.scss";
+@import "../../base/color";
+
 .baseButton {
   border: none;
-  border-radius: 6px;
   cursor: pointer;
-  background: #2563eb; /* blue */
-  color: white;
+  border-radius: 4px;
   font-weight: 500;
   transition: background 0.2s, transform 0.1s;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+
+  &:active {
+    transform: scale(0.97);
+  }
 }
 
-.baseButton:hover {
-  background: #1d4ed8; /* darker blue */
+.fullWidth {
+  width: 100%;
 }
-
-.baseButton:active {
-  transform: scale(0.97);
-}
-
 /* ---- Sizes ---- */
-.buttonSm {
+.btnMd {
   padding: 4px 10px;
   font-size: 12px;
   line-height: 16px;
 }
 
-.buttonMd {
-  padding: 8px 16px;
+.btnMd {
+  padding: 4px 6px;
   font-size: 14px;
   line-height: 20px;
 }
 
-.buttonLg {
+.btnLg {
   padding: 12px 20px;
   font-size: 16px;
   line-height: 24px;
 }
 
-.buttonXl {
+.btnXl {
   padding: 16px 28px;
   font-size: 18px;
-
   line-height: 28px;
 }
 
@@ -52,35 +49,57 @@
   width: 100%;
 }
 
-/* Varinats */
-.primary {
+/* ---- Variants ---- */
+.btnPrimary {
   background: $primary-color;
-  color: white;
+  color: $text-white;
+
+  &:hover {
+    background: $primary-color-dark;
+  }
 }
-.primary:hover {
-  background: $primary-dark;
+
+.btnSecondary {
+  background: $secondary-color;
+  color: $text-white;
+
+  &:hover {
+    background: $secondary-color-dark;
+  }
 }
-.primary:active {
-  background: $primary-dark; /* even darker blue */
+
+.btnSuccess {
+  background: $success-color;
+  color: $text-white;
+
+  &:hover {
+    background: $success-color-dark;
+  }
 }
-.secondary {
-  background: $secondary-color; /* light gray */
-  color: #374151; /* dark gray */
+
+.btnWarning {
+  background: $warning-color;
+  color: $text-white;
+
+  &:hover {
+    background: $warning-color-dark;
+  }
 }
-.secondary:hover {
-  background: #d1d5db; /* darker light gray */
+
+.btnDanger {
+  background: $danger-color;
+  color: $text-white;
+
+  &:hover {
+    background: $danger-color-dark;
+  }
 }
-.secondary:active {
-  background: #9ca3af; /* even darker gray */
-}
-.info {
-  background: transparent;
-  color: #2563eb; /* blue */
-  border: 1px solid #2563eb; /* blue */
-}
-.info:hover {
-  background: #eff6ff; /* light blue */
-}
-.info:active {
-  background: #dbeafe; /* darker light blue */
+
+.btnInfo {
+  background: $info-color;
+  color: $text-white;
+
+  &:hover {
+    background: $info-color-dark;
+  }
 }

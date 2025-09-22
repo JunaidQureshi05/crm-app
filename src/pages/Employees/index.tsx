@@ -1,5 +1,8 @@
 import Table from "../../components/Table";
 import withPermission from "../../auth/HOC/withPermission";
+import { BadgeVariant, ButtonVariant } from "../../design/types";
+import Button from "../../design/components/Button";
+import Badge from "../../design/components/Badge";
 
 export const employeeData = Array.from({ length: 100 }, (_, i) => {
   const names = [
@@ -50,7 +53,16 @@ export const employeeColumns = [
   { key: "role", label: "Role" },
   { key: "dept", label: "Department" },
   { key: "email", label: "Email" },
-  { key: "status", label: "Status" },
+  {
+    key: "status",
+    label: "Status",
+    render: (val) => (
+      <Badge
+        variant={val === "Active" ? BadgeVariant.success : BadgeVariant.danger}
+        label={val}
+      />
+    ),
+  },
 ];
 
 const EmployeesPage = () => {

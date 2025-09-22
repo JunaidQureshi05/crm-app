@@ -1,6 +1,6 @@
 import { JSX } from "react";
 
-export enum ButtonSize {
+export enum Sizes {
   sm = "small",
   md = "medim",
   lg = "large",
@@ -9,7 +9,7 @@ export enum ButtonSize {
 export type ButtonPropType = {
   label: string | JSX.Element;
   onClick: () => void;
-  size?: ButtonSize;
+  size?: Sizes;
   fullWidth?: boolean;
   variant?: ButtonVariant;
 };
@@ -27,4 +27,15 @@ export enum ButtonVariant {
   ghost = "ghost",
   outline = "outline",
   text = "text",
+}
+
+export enum BadgeVariant {
+  primary = "primary",
+  secondary = "secondary",
+  success = "success",
+  warning = "warning",
+  info = "info",
+  light = "light",
+  dark = "dark",
+  danger = "danger",
 }

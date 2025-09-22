@@ -1,41 +1,64 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
-import Button from "./index";
-import { ButtonSize, ButtonVariant } from "./type";
+import Badge from "./index";
+import { Sizes, BadgeVariant } from "../../types";
 
-const meta: Meta<typeof Button> = {
-  title: "Components/Badge", // sidebar group
-  component: Button,
+const meta: Meta<typeof Badge> = {
+  title: "Components/Badge",
+  component: Badge,
   argTypes: {
     size: {
       control: "select",
-      options: [ButtonSize.sm, ButtonSize.md, ButtonSize.lg, ButtonSize.xl],
+      options: [Sizes.sm, Sizes.md, Sizes.lg],
     },
-    fullWidth: { control: "boolean" },
-    onClick: { action: "clicked" },
+    variant: {
+      control: "select",
+      options: Object.values(BadgeVariant),
+    },
   },
 };
 export default meta;
 
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof Badge>;
 
 export const Primary: Story = {
   args: {
-    label: "Primary Button",
-    variant: ButtonVariant.primary,
+    label: "Primary Badge",
+    variant: BadgeVariant.primary,
   },
 };
 
 export const Secondary: Story = {
   args: {
-    label: "Secondary Button",
-    variant: ButtonVariant.secondary,
+    label: "Secondary Badge",
+    variant: BadgeVariant.secondary,
   },
 };
 
 export const Info: Story = {
   args: {
-    label: "Info Button",
-    variant: ButtonVariant.info,
+    label: "Info Badge",
+    variant: BadgeVariant.info,
+  },
+};
+
+export const Success: Story = {
+  args: {
+    label: "Success Badge",
+    variant: BadgeVariant.success,
+  },
+};
+
+export const Warning: Story = {
+  args: {
+    label: "Warning Badge",
+    variant: BadgeVariant.warning,
+  },
+};
+
+export const Danger: Story = {
+  args: {
+    label: "Danger Badge",
+    variant: BadgeVariant.dark,
   },
 };

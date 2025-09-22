@@ -87,7 +87,10 @@ export default function AppLayout() {
             aria-label="Toggle drawer"
             aria-expanded={open}
             variant={ButtonVariant.primary}
-            onClick={handleToggle}
+            onClick={() => {
+              debugger;
+              handleToggle();
+            }}
             label={open ? <X size={18} /> : <Menu size={18} />}
           />
           <h1 className={styles.appTitle}>⚡ CRM App</h1>

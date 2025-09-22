@@ -1,9 +1,11 @@
 import { useState, useMemo } from "react";
 import styles from "./Table.module.scss";
+import { render } from "@testing-library/react";
 
 interface TableColumn {
   key: string;
   label: string;
+  render?: () => React.Component;
 }
 
 interface TableRow {
@@ -104,7 +106,9 @@ export default function Table({ columns, data }: TableProps) {
               className={idx % 2 === 0 ? styles.evenRow : styles.oddRow}
             >
               {columns.map((col) => {
+                console.log(">>>>", col);
                 const cell = row[col.key];
+                console.log(col);
                 return (
                   <td
                     key={col.key}
@@ -116,7 +120,7 @@ export default function Table({ columns, data }: TableProps) {
                         : ""
                     }
                   >
-                    {cell}
+                    {col.render ? col.render(cell) : cell}
                   </td>
                 );
               })}

@@ -1,56 +1,82 @@
-import { ButtonPropType, ButtonSize, ButtonVariant } from "../../types/";
+import React from "react";
+import { ButtonVariant, Sizes } from "../../types";
 import s from "./Button.module.scss";
 
 const Button = ({
+  size,
   label,
-  variant = ButtonVariant.primary,
-  onClick,
-  size = ButtonSize.md,
+  variant,
   fullWidth = false,
-}: ButtonPropType) => {
-  let sizeClass = "";
-  let variantClass = "";
+  ...pwd
+}: {
+  size: Sizes;
+  variant: ButtonVariant;
+  fullWidth?: boolean;
+  label: string;
+}) => {
+  let sizeClass;
+  let variantClass;
+  let widthClass = fullWidth ? s.fullWidth : "";
   switch (size) {
-    case ButtonSize.sm:
-      sizeClass = s.buttonSm;
+    case Sizes.sm:
+      sizeClass = s.btnSm;
       break;
-    case ButtonSize.md:
-      sizeClass = s.buttonMd;
+    case Sizes.md:
+      sizeClass = s.btnMd;
       break;
-    case ButtonSize.lg:
-      sizeClass = s.buttonLg;
+    case Sizes.lg:
+      sizeClass = s.btnLg;
       break;
-    case ButtonSize.xl:
-      sizeClass = s.buttonXl;
+    case Sizes.xl:
+      sizeClass = s.btnXl;
       break;
     default:
-      sizeClass = s.buttonMd;
+      sizeClass = s.btnMd;
   }
   switch (variant) {
     case ButtonVariant.primary:
-      variantClass = s.primary;
+      variantClass = s.btnPrimary;
       break;
     case ButtonVariant.secondary:
-      variantClass = s.secondary;
+      variantClass = s.btnSecondary;
+      break;
+    case ButtonVariant.success:
+      variantClass = s.btnSuccess;
+      break;
+    case ButtonVariant.warning:
+      variantClass = s.btnWarning;
+      break;
+    case ButtonVariant.danger:
+      variantClass = s.btnDanger;
       break;
     case ButtonVariant.info:
-      variantClass = s.info;
+      variantClass = s.btnInfo;
+      break;
+    case ButtonVariant.light:
+      variantClass = s.btnLight;
+      break;
+    case ButtonVariant.dark:
+      variantClass = s.btnDark;
+      break;
+    case ButtonVariant.link:
+      variantClass = s.btnLink;
+      break;
+    case ButtonVariant.ghost:
+      variantClass = s.btnGhost;
+      break;
+    case ButtonVariant.outline:
+      variantClass = s.btnOutline;
+      break;
+    case ButtonVariant.text:
+      variantClass = s.btnText;
       break;
     default:
-      variantClass = s.primary;
+      variantClass = s.btnPrimary;
   }
-
   return (
     <button
-      onClick={onClick}
-      className={[
-        s.baseButton,
-        sizeClass,
-        variantClass,
-        fullWidth && s.fullWidth,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={`${s.baseButton} ${sizeClass} ${variantClass} ${widthClass}`}
+      {...pwd}
     >
       {label}
     </button>

@@ -1,30 +1,25 @@
-// _colors.scss
+$primary-color: #3b82f6;
+$primary-color-light: #60a5fa;
+$primary-color-dark: #1d4ed8;
 
-// Brand / Primary
-$primary-color: #2563eb; // Bright but professional blue
-$primary-light: #60a5fa;
-$primary-dark: #1e40af;
+$secondary-color: #234c6a;
+$secondary-color-light: #1b3c53;
+$secondary-color-dark: #456882;
 
-// Secondary / Accent
-$secondary-color: #14b8a6; // Teal for freshness
-$secondary-light: #5eead4;
-$secondary-dark: #0f766e;
+$info-color: #b8c5d6;
+$info-color-light: #d1d9e3;
+$info-color-dark: #7a8a9e;
 
-// Backgrounds
-$background-light: #f9fafb; // Light neutral background
-$background-dark: #111827; // For dark mode
+$success-color: #22c55e;
+$success-color-light: #4ade80;
+$success-color-dark: #15803d;
 
-// Surface (cards, sections, tables)
-$surface-light: #ffffff;
-$surface-dark: #1f2937;
+$danger-color: #ef4444;
+$danger-color-light: #d14e4e;
+$danger-color-dark: #b91c1c;
 
-// Text
-$text-primary: #111827; // Almost black
-$text-secondary: #6b7280; // Muted gray
-$text-inverse: #ffffff;
+$warning-color: #f59e0b;
+$warning-color-light: #fbbf24;
+$warning-color-dark: #b45309;
 
-// Status Colors
-$success-color: #22c55e; // Green
-$warning-color: #f59e0b; // Amber
-$error-color: #ef4444; // Red
-$info-color: #3b82f6; // Blue
+$text-white: #ffffff;

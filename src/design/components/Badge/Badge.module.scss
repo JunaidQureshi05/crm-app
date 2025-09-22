@@ -1,86 +1,64 @@
-@import "src/design/base/color.scss";
-.baseButton {
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  background: #2563eb; /* blue */
-  color: white;
-  font-weight: 500;
-  transition: background 0.2s, transform 0.1s;
+@import "../../base/color";
+
+.baseBadge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+  line-height: 16px;
   box-sizing: border-box;
-}
-
-.baseButton:hover {
-  background: #1d4ed8; /* darker blue */
-}
-
-.baseButton:active {
-  transform: scale(0.97);
+  transition: background 0.2s, color 0.2s;
 }
 
 /* ---- Sizes ---- */
-.buttonSm {
-  padding: 4px 10px;
+.badgeSm {
+  font-size: 10px;
+  line-height: 14px;
+  padding: 1px 6px;
+}
+
+.badgeMd {
   font-size: 12px;
   line-height: 16px;
+  padding: 2px 8px;
 }
 
-.buttonMd {
-  padding: 8px 16px;
+.badgeLg {
   font-size: 14px;
   line-height: 20px;
+  padding: 4px 10px;
 }
 
-.buttonLg {
-  padding: 12px 20px;
-  font-size: 16px;
-  line-height: 24px;
-}
-
-.buttonXl {
-  padding: 16px 28px;
-  font-size: 18px;
-
-  line-height: 28px;
-}
-
-/* ---- Utility ---- */
-.fullWidth {
-  width: 100%;
-}
-
-/* Varinats */
-.primary {
+/* ---- Variants ---- */
+.badgePrimary {
   background: $primary-color;
-  color: white;
+  color: $text-white;
 }
-.primary:hover {
-  background: $primary-dark;
+
+.badgeSecondary {
+  background: $secondary-color;
+  color: $text-white;
 }
-.primary:active {
-  background: $primary-dark; /* even darker blue */
+
+.badgeInfo {
+  background: $info-color;
+  color: $text-white;
 }
-.secondary {
-  background: $secondary-color; /* light gray */
-  color: #374151; /* dark gray */
+
+.badgeSuccess {
+  background: $success-color;
+  color: $text-white;
 }
-.secondary:hover {
-  background: #d1d5db; /* darker light gray */
+
+.badgeWarning {
+  background: $warning-color;
+  color: $text-white;
 }
-.secondary:active {
-  background: #9ca3af; /* even darker gray */
-}
-.info {
-  background: transparent;
-  color: #2563eb; /* blue */
-  border: 1px solid #2563eb; /* blue */
-}
-.info:hover {
-  background: #eff6ff; /* light blue */
-}
-.info:active {
-  background: #dbeafe; /* darker light blue */
+
+.badgeDanger {
+  background: $danger-color;
+  color: $text-white;
 }
